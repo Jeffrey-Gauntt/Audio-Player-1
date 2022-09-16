@@ -52,10 +52,19 @@ main {
 	border-radius: var(--border-radius-main);
 	box-shadow: var(--box-shadow-main);
 }
-.player-container:hover >.info-controls-container .info {
+
+.player-container:hover > .info-container .info {
 	position: relative;
 	left: 50px;
 	top: -50px;
+}
+
+.player-container:hover > .controls-container {
+	padding: 19px;
+}
+
+.player-container:hover > .controls-container .controls-inner-1 i {
+	font-size: 2.5rem;
 }
 
 .img-container {
@@ -68,17 +77,65 @@ main {
 	position: relative;
 }
 
-
-
 .img-container img {
 	width: 300px;
-	
-	/* object-fit: cover; */
 }
 
-.info-controls-container {
+.info-container {
 	width: 100%;
+	background-color: transparent;
 }
+
+.controls-container {
+	border-radius: 0 0 var(--border-radius-main) var(--border-radius-main);
+	overflow: hidden;
+	position: relative;
+	padding-bottom: 10px;
+}
+
+.controls-inner-1 {
+	position: relative;
+	display: flex;
+	padding: 2px 2px;
+	justify-content: space-between;
+	z-index: 1;
+}
+
+#pauseBtn {
+	display: none;
+}
+
+.time {
+	align-self: flex-end;
+}
+
+.controls-inner-1 i {
+	cursor: pointer;
+	text-shadow: 0 0 4px #00ffff;
+}
+
+.controls-inner-1 i:hover {
+	filter: brightness(85%);
+	text-shadow: 0 0 7px #00ffff;
+}
+
+.progress-container {
+	position: absolute;
+	bottom: 0;
+	background: #fff;
+	cursor: pointer;
+	margin: 0 auto;
+	height: 7px;
+	width: 100%;
+  }
+
+  .progress {
+	background: #00ffff;
+	border-radius: 1px;
+	height: 100%;
+	width: 68%;
+	transition: width 0.1s linear;
+  }
 
 audio {
 	width: 100%;
@@ -117,5 +174,5 @@ footer a {
 }
 
 footer a:hover {
-	color: var(--highlight-1);
+	color: #00ffff;
 }

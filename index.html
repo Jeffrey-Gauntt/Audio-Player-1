@@ -5,6 +5,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="icon" type="image/png" href="img/utilities/favicon.png">
+	<script src="https://kit.fontawesome.com/10eb3f15a1.js" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="style.css">
 	<title>Audio Player</title>
 </head>
@@ -15,12 +16,24 @@
 			<div class="img-container">
 				<img src="img/track/female-singer.jpg" alt="Track Image">
 			</div>
-			<div class="info-controls-container">
+			<div class="info-container">
 				<h2 id="track-title" class="info">Female Voice</h2>
-				<h3 id="track-artist" class="info">Female Singer</h3>
-				
-				<audio src="" controls></audio>
+				<h3 id="track-artist" class="info">Female Singer</h3>			
 			</div>
+			<div class="controls-container">
+				<div class="controls-inner-1">
+					<div id="current-time" class="time">0:00</div>
+					<i id="backBtn" class="fa-solid fa-backward-step"></i>
+					<i id="playBtn" class="fa-solid fa-play"></i>
+					<i id="pauseBtn" class="fa-solid fa-pause"></i>
+					<i id="nextBtn" class="fa-solid fa-forward-step"></i>
+					<div id="duration" class="time">0:00</div>
+				</div>
+				<div class="progress-container" id="progress-container">
+					<div class="progress" id="progress"></div>
+				</div>
+			</div>
+			<audio src="tracks/lift.mp3"></audio>
 		</section>
 	</main>
 	
