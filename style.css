@@ -6,7 +6,11 @@
 
 :root {
 	--white-1: #fff;
-	--footer-font-size: 1.5rem;
+	--highlight-1: hotpink;
+	--background-opaque: rgba(0,0,0,0.5);
+	--footer-font-size: 1.25rem;
+	--border-radius-main: 1rem;
+	--box-shadow-main: 5px 15px 20px 5px rgba(0,0,0,0.3);
 }
 
 body {
@@ -15,10 +19,46 @@ body {
 	background: url(img/utilities/main-background-1.jpg) no-repeat center;
 	background-size: cover;
 	font-size: 16px;
-	padding-bottom: var(--footer-font-size);
+	padding-bottom: 11rem;
 	color: var(--white-1);
 }
 
+main {
+	display: grid;
+	place-items: center;
+	height: 100%;
+	padding: 37.5px;
+}
+
+.player-container {
+	background-color: var(--background-opaque);
+	height: 450px;
+	width: 300px;
+	border-radius: var(--border-radius-main);
+	display: flex;
+	flex-direction: column;
+	box-shadow: var(--box-shadow-main);
+}
+
+.img-container {
+	width: 100%;
+	flex-grow: 1;
+	overflow: hidden;
+	border-radius: var(--border-radius-main) var(--border-radius-main) 0 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	top: -50px;
+}
+
+.img-container img {
+	width: 100%;
+	object-fit: cover;
+}
+
+.info-controls-container {
+	width: 100%;
+}
 
 
 
@@ -30,15 +70,28 @@ footer {
 }
 
 .footer-container {
-	margin: 1rem;
-	padding: 1rem;
+	margin: 1.55rem;
+	padding: 0.55rem;
 	border: 1px solid var(--white-1);
-	border-radius: 1rem;
+	border-radius: 0.75rem;
+	box-shadow: var(--box-shadow-main);
+	background-color: rgba(0,0,0,0.2);
+}
+
+.label-credits {
+	/* color: var(--highlight-1); */
+	text-decoration: underline;
 }
 
 footer a {
+	margin-left: 1rem;
 	display: block;
-	font-size: 1.5rem;
+	font-size: 1rem;
+	text-decoration: none;
 	top: 0;
 	color: var(--white-1);
+}
+
+footer a:hover {
+	color: var(--highlight-1);
 }
