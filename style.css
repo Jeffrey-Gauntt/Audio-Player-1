@@ -1,0 +1,44 @@
+* {
+	margin: 0;
+	padding: ;
+	box-sizing: border-box;
+}
+
+:root {
+	--white-1: #fff;
+	--footer-font-size: 1.5rem;
+}
+
+body {
+	width: 100vw;
+	height: 100vh;
+	background: url(img/utilities/main-background-1.jpg) no-repeat center;
+	background-size: cover;
+	font-size: 16px;
+	padding-bottom: var(--footer-font-size);
+	color: var(--white-1);
+}
+
+
+
+
+
+
+footer {
+	position: absolute;
+	bottom: 0;
+}
+
+.footer-container {
+	margin: 1rem;
+	padding: 1rem;
+	border: 1px solid var(--white-1);
+	border-radius: 1rem;
+}
+
+footer a {
+	display: block;
+	font-size: 1.5rem;
+	top: 0;
+	color: var(--white-1);
+}
