@@ -29,7 +29,6 @@ const trackList = [
 // track variables
 let trackTitle = document.getElementById("track-title");
 let trackArtist = document.getElementById("track-artist");
-let trackImg = document.getElementById("track-img");
 
 // player variables
 const player = document.querySelector("audio");
@@ -37,6 +36,14 @@ const prevBtn = document.getElementById("prevBtn");
 const playBtn = document.getElementById("playBtn");
 const pauseBtn = document.getElementById("pauseBtn");
 const nextBtn = document.getElementById("nextBtn");
+let isPlaying = false;
+let trackIndex = 0; // initial setting
+
+// img variables
+let amountImgRotation = 360;
+let imgPosition = 0; // initial setting
+let trackImg = document.getElementById("track-img");
+let trackImgCont = document.getElementById("track-img-container");
 
 // Progress variables
 const progressContainer = document.getElementById("progress-container");
@@ -52,20 +59,32 @@ function loadTrack(track) {
 	trackImg.src = `img/track/${track.imgname}`;
 }
 
+// track img rotate
+function rotateTrackImgForward() { // rotate forward track img
+	imgPosition += amountImgRotation;
+	console.log(imgPosition);
+	trackImgCont.style.transform = `rotate(${imgPosition}deg)`;
+}
+
+function rotateTrackImgBackward() { // rotate backward track img
+	imgPosition -= amountImgRotation;
+	console.log(imgPosition);
+	trackImgCont.style.transform = `rotate(${imgPosition}deg)`;
+}
+
 // on page page load
-let trackIndex = 0; // setting intial trackIndex
 loadTrack(trackList[trackIndex]);
 
 // player functions
-let isPlaying = false;
-
 function playAudio() {
+	if(!isPlaying) {
+		rotateTrackImgForward();
+	}
 	playBtn.style.display = "none";
 	pauseBtn.style.display = "block";
 	isPlaying = true;
 	player.play();
 }
-
 
 function pauseAudio() {
 	pauseBtn.style.display = "none";
@@ -73,18 +92,29 @@ function pauseAudio() {
 	isPlaying = false;
 	player.pause();
 }
+
 function nextTrack() {
 	trackIndex++;
 	trackIndex < trackList.length ? trackIndex : trackIndex = 0;
 	loadTrack(trackList[trackIndex]);
-	isPlaying ? playAudio() : pauseAudio();
+	if(isPlaying){
+		rotateTrackImgForward();
+		playAudio();		
+	}else{
+		pauseAudio();
+	}
 }
 
 function prevTrack() {
 	trackIndex--;
 	trackIndex < 0 ? trackIndex = trackList.length - 1 : trackIndex;
 	loadTrack(trackList[trackIndex]);
-	isPlaying ? playAudio() : pauseAudio();
+	if(isPlaying){
+		playAudio();
+		rotateTrackImgBackward();
+	}else{
+		pauseAudio();
+	}
 }
 
 // progress and time functions
