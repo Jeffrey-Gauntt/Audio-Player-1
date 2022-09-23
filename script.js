@@ -5,24 +5,40 @@ const trackList = [
 	  imgname: "female-singer-1.jpg",
 	  title: 'Elevation',
 	  artist: 'Arianna Lorenzato',
+	  info: [
+		"An up and coming singer with style!",
+		"Catch her on UndergroundSounds.studio"
+	  ],
 	},
 	{
 	  filename: 'relics.mp3',
 	  imgname: "manila-1.jpg",
 	  title: 'Relics',
 	  artist: 'Warriors of the Axe',
+	  info: [
+		"Hardcore with quality.",
+		"Rockin' the world!"
+	  ],
 	},
 	{
 	  filename: 'jungle.mp3',
 	  imgname: "waterfall-1.jpg",
 	  title: 'Jungle',
 	  artist: 'Sound Designers of Texas',
+	  info: [
+		"Sound design with in depth tone.",
+		"You'll her them in the latest movies."
+	  ],
 	},
 	{
 	  filename: 'guitar.mp3',
 	  imgname: "guitar-classical-1.jpg",
 	  title: 'Spanish Strums',
 	  artist: 'Juan Arreola',
+	  info: [
+		"Playing the classical classics.",
+		"Catch him on tour."
+	  ],
 	}
 ];
 
@@ -38,16 +54,17 @@ const pauseBtn = document.getElementById("pauseBtn");
 const nextBtn = document.getElementById("nextBtn");
 let isPlaying = false;
 let trackIndex = 0; // initial setting
+let recordSpinner = document.getElementById('record-spinner');
+let recordSpinner2 = document.getElementById('record-spinner2');
 
-// img variables
+// track img variables
 let amountImgContRotation = 360;
 let imgContPosition = 0; // initial setting
 let amountImgRotationImg = 360;
-let imgPositionImg = 0; // initial setting
+let imgPositionForward = 0; // initial setting
+let imgPositionBackward = 0; // initial setting
 let trackImg = document.getElementById("track-img");
 let trackImgCont = document.getElementById("track-img-container");
-
-
 
 // Progress variables
 const progressContainer = document.getElementById("progress-container");
@@ -65,21 +82,24 @@ function loadTrack(track) {
 
 // track img rotate
 function rotateTrackImgForward() { // rotate forward track img
-	imgPositionImg += amountImgRotationImg;
-	trackImg.style.transform = `rotate(${imgPositionImg}deg)`;
-	console.log(imgPositionImg + ", rot->");
+	rotateSpinner2Backward();
+	imgPositionForward += amountImgRotationImg;
+	trackImg.style.transform = `rotate(${imgPositionForward}deg)`;
+	recordSpinner.style.transform = `rotate(${imgPositionForward}deg)`;
+}
+function rotateSpinner2Backward() {
+	imgPositionBackward -= amountImgRotationImg;
+	recordSpinner2.style.transform = `rotate(${imgPositionBackward}deg)`;
 }
 
 function flipImgForward(){
 	imgContPosition += amountImgContRotation;
 	trackImgCont.style.transform = `rotateY(${imgContPosition}deg)`;
-	console.log(imgContPosition + ", flip");
 }
 
 function flipImgBackward(){
 	imgContPosition -= amountImgContRotation;
 	trackImgCont.style.transform = `rotateY(${imgContPosition}deg)`;
-	console.log(imgContPosition + ", flip");
 }
 
 // on page page load
@@ -89,7 +109,7 @@ loadTrack(trackList[trackIndex]);
 function playAudio() {
 	if(!isPlaying) {
 		rotateTrackImgForward();
-		console.log(imgContPosition + ", play wasn't playing");
+		console.log(recordSpinner);
 	}
 	playBtn.style.display = "none";
 	pauseBtn.style.display = "block";
@@ -171,3 +191,29 @@ player.addEventListener("ended", nextTrack);
 // progress and time event listeners
 player.addEventListener("timeupdate", updateProgressBar);
 progressContainer.addEventListener("click", setProgressBar);
+
+// info slide variables
+slideInfoTarget = document.getElementById('slide-info');
+let slideInit = 0;
+// let slideInfo = [];
+let slideTime = 1500;
+
+const slideInfo = [
+	"Slide 1",
+	"Slide 2",
+	"Slide 3"
+];
+
+function changeSlide() {
+	slideInfoTarget.textContent = trackList[trackIndex].info[slideInit];
+	slideInit < trackList[trackIndex].info.length - 1 ? slideInit++ : slideInit = 0;
+	// if(slideInit < slideInfo.length - 1){
+	// 	slideInit++;
+	// }else{
+	// 	slideInit = 0;
+	// }
+
+	setTimeout("changeSlide()", slideTime);
+}
+
+changeSlide();

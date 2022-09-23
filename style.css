@@ -48,7 +48,8 @@ main {
 	padding: 0 0 19.5px 0;
 }
 
-.player-container:hover > .controls-container .controls-inner-1 i {
+.player-container:hover > .controls-container .controls-inner-1 i,
+.player-container:hover > .info-container .info-slide-container i {
 	font-size: 40px;
 }
 
@@ -83,6 +84,19 @@ main {
 	position: relative;
 	left: 50px;
 	top: -50px;
+}
+
+.info-slide-container {
+	position: relative;
+	top: -50px;
+	height: 100%;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.info-slide-container i {
+	transition: var(--transisition-settings);
 }
 
 .controls-container {
