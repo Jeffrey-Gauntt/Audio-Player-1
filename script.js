@@ -23,7 +23,7 @@ const trackList = [
 	  imgname: "guitar-classical-1.jpg",
 	  title: 'Spanish Strums',
 	  artist: 'Juan Arreola',
-	},
+	}
 ];
 
 // track variables
@@ -42,8 +42,12 @@ let trackIndex = 0; // initial setting
 // img variables
 let amountImgRotation = 360;
 let imgPosition = 0; // initial setting
+let amountImgRotationImg = 360;
+let imgPositionImg = 0; // initial setting
 let trackImg = document.getElementById("track-img");
 let trackImgCont = document.getElementById("track-img-container");
+
+
 
 // Progress variables
 const progressContainer = document.getElementById("progress-container");
@@ -60,16 +64,22 @@ function loadTrack(track) {
 }
 
 // track img rotate
-function rotateTrackImgForward() { // rotate forward track img
-	imgPosition += amountImgRotation;
-	console.log(imgPosition);
-	trackImgCont.style.transform = `rotate(${imgPosition}deg)`;
+function rotateTrackImgForward1() { // rotate forward track img
+	imgPositionImg += amountImgRotationImg;
+	trackImg.style.transform = `rotate(${imgPositionImg}deg)`;
+	console.log(imgPositionImg + ", rot->");
 }
 
-function rotateTrackImgBackward() { // rotate backward track img
+function flipImgForward(){
+	imgPosition += amountImgRotation;
+	trackImgCont.style.transform = `rotateY(${imgPosition}deg)`;
+	console.log(imgPosition + ", flip");
+}
+
+function flipImgBackward(){
 	imgPosition -= amountImgRotation;
-	console.log(imgPosition);
-	trackImgCont.style.transform = `rotate(${imgPosition}deg)`;
+	trackImgCont.style.transform = `rotateY(${imgPosition}deg)`;
+	console.log(imgPosition + ", flip");
 }
 
 // on page page load
@@ -78,7 +88,8 @@ loadTrack(trackList[trackIndex]);
 // player functions
 function playAudio() {
 	if(!isPlaying) {
-		rotateTrackImgForward();
+		rotateTrackImgForward1();
+		console.log(imgPosition + ", play wasn't playing");
 	}
 	playBtn.style.display = "none";
 	pauseBtn.style.display = "block";
@@ -97,8 +108,8 @@ function nextTrack() {
 	trackIndex++;
 	trackIndex < trackList.length ? trackIndex : trackIndex = 0;
 	loadTrack(trackList[trackIndex]);
+	flipImgForward();
 	if(isPlaying){
-		rotateTrackImgForward();
 		playAudio();		
 	}else{
 		pauseAudio();
@@ -109,9 +120,9 @@ function prevTrack() {
 	trackIndex--;
 	trackIndex < 0 ? trackIndex = trackList.length - 1 : trackIndex;
 	loadTrack(trackList[trackIndex]);
+	flipImgBackward();
 	if(isPlaying){
 		playAudio();
-		rotateTrackImgBackward();
 	}else{
 		pauseAudio();
 	}

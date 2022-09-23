@@ -12,7 +12,7 @@
 	--border-radius-main: 1rem;
 	--box-shadow-main: 5px 15px 20px 5px rgba(0,0,0,0.3);
 	--transisition-height-settings: height 0.2s ease-in-out;
-	--transisition-settings: 1s ease-in-out;
+	--transisition-settings: 1s;
 }
 
 body {
@@ -70,7 +70,7 @@ main {
 
 .img-container img {
 	width: 300px;
-	/* transition: var(--transisition-settings); */
+	transition: var(--transisition-settings);
 	/* object-fit: fill; */
 }
 
