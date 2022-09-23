@@ -40,8 +40,8 @@ let isPlaying = false;
 let trackIndex = 0; // initial setting
 
 // img variables
-let amountImgRotation = 360;
-let imgPosition = 0; // initial setting
+let amountImgContRotation = 360;
+let imgContPosition = 0; // initial setting
 let amountImgRotationImg = 360;
 let imgPositionImg = 0; // initial setting
 let trackImg = document.getElementById("track-img");
@@ -64,22 +64,22 @@ function loadTrack(track) {
 }
 
 // track img rotate
-function rotateTrackImgForward1() { // rotate forward track img
+function rotateTrackImgForward() { // rotate forward track img
 	imgPositionImg += amountImgRotationImg;
 	trackImg.style.transform = `rotate(${imgPositionImg}deg)`;
 	console.log(imgPositionImg + ", rot->");
 }
 
 function flipImgForward(){
-	imgPosition += amountImgRotation;
-	trackImgCont.style.transform = `rotateY(${imgPosition}deg)`;
-	console.log(imgPosition + ", flip");
+	imgContPosition += amountImgContRotation;
+	trackImgCont.style.transform = `rotateY(${imgContPosition}deg)`;
+	console.log(imgContPosition + ", flip");
 }
 
 function flipImgBackward(){
-	imgPosition -= amountImgRotation;
-	trackImgCont.style.transform = `rotateY(${imgPosition}deg)`;
-	console.log(imgPosition + ", flip");
+	imgContPosition -= amountImgContRotation;
+	trackImgCont.style.transform = `rotateY(${imgContPosition}deg)`;
+	console.log(imgContPosition + ", flip");
 }
 
 // on page page load
@@ -88,8 +88,8 @@ loadTrack(trackList[trackIndex]);
 // player functions
 function playAudio() {
 	if(!isPlaying) {
-		rotateTrackImgForward1();
-		console.log(imgPosition + ", play wasn't playing");
+		rotateTrackImgForward();
+		console.log(imgContPosition + ", play wasn't playing");
 	}
 	playBtn.style.display = "none";
 	pauseBtn.style.display = "block";
